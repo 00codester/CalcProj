@@ -8,6 +8,7 @@
 #include <fstream>
 using namespace std;
 
+//This functions checks to see if a proper operator was input
 bool opcheck(string enteredOp) {
     if (enteredOp == "\+" || enteredOp == "\-" || enteredOp == "\*" || enteredOp == "\/") {
         return true;
@@ -17,6 +18,7 @@ bool opcheck(string enteredOp) {
     }
 }
 
+//This function performs the actual math and does the calculation
 double dothemath(double num1, string op, double num2) {
     if (op == "\+") {
         return num1 + num2;
@@ -32,6 +34,7 @@ double dothemath(double num1, string op, double num2) {
     }
 }
 
+//Writes the history of calculations performed to a file
 int writetomyfile(vector<string> wholeexpression) {
     ofstream MyFile("calchistory.txt");
     for (int i = 0; i < wholeexpression.size(); i++) {
@@ -111,6 +114,8 @@ int main()
         }
 
         answertomath = dothemath(x, operate, y);
+
+        //adds items to vector to be more visually appealing when looking at the information in the file
         allInputs.push_back("=");
         allInputs.push_back(to_string(answertomath));
         allInputs.push_back("\n");
